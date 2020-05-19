@@ -30,7 +30,7 @@ app.use(cors());
  *   (Source: https://stackoverflow.com/questions/38306569/what-does-body-parser-do-with-express)
  **/
 const bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 console.log(__dirname);
@@ -66,7 +66,8 @@ app.post("/sendText", function (req, res) {
   textapi.sentiment({ url: req.body.url }, function (error, response) {
     if (error) {
       console.log("Error: Aylien request not successful");
-      res.send();
+      console.log()
+      response.send();
       return;
     }
     console.log("Success: You got the Aylien results");
