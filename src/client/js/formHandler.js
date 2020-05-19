@@ -13,7 +13,7 @@ function handleSubmit(event) {
         return;
     }
     console.log("URL valid: please wait for the response")
-    fetch("//localhost:3000/sendText", {
+    fetch("//localhost:8081/sendText", {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         headers: {
             "Content-Type": "application/json",

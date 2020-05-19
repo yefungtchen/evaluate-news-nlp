@@ -36,8 +36,8 @@ app.use(bodyParser.json());
 console.log(__dirname);
 
 // Setting up the GET route (Client takes data from Server)
-app.get("/", function (req, res) {
-  res.sendFile("dist/index.html");
+app.get("/", function (request, response) {
+  response.sendFile("dist/index.html");
 });
 
 // designates what port the app will listen to for incoming requests
@@ -45,12 +45,12 @@ app.listen(8080, function () {
   console.log("Example app listening on port 8080!");
 });
 
-app.get("/test", function (req, res) {
-  res.send(mockAPIResponse);
+app.get("/test", function (request, response) {
+  response.send(mockAPIResponse);
 });
 
 // Setting up the POST Route (Client sending data to Server)
-app.post("/sendText", function (req, res) {
+app.post("/sendText", function (request, response) {
   // https://docs.aylien.com/textapi/sdks/#node-js-sdk
   //   textapi.sentiment({
   //     'text': 'John is a very good football player!'
@@ -63,13 +63,14 @@ app.post("/sendText", function (req, res) {
   //   });
   // }
 
-  textapi.sentiment({ url: req.body.url }, function (error, response) {
+  textapi.sentiment({ url: request.body.url }, function (error, results) {
     if (error) {
       console.log("Error: Aylien request not successful");
       console.log()
-      response.send();
+      results.send();
       return;
     }
     console.log("Success: You got the Aylien results");
+    results.send();
   })
 });
