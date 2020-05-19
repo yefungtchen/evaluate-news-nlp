@@ -1,6 +1,8 @@
-const dotenv = require('dotenv');
-dotenv.config();
-
+// const dotenv = require('dotenv');
+// dotenv.config();
+// console.log("API Keys")
+// console.log(`Your API id is ${process.env.API_ID}`);
+// console.log(`Your API key is ${process.env.API_KEY}`);
 var path = require("path");
 
 const mockAPIResponse = require("./mockAPI.js");
@@ -8,8 +10,8 @@ const mockAPIResponse = require("./mockAPI.js");
 // Aylien API
 const AYLIENTextAPI = require('aylien_textapi');
 const textapi = new AYLIENTextAPI({
-  application_id: process.env.API_ID,
-  application_key: process.env.API_KEY
+  application_id: "API_ID", // works hardcoded
+  application_key: "API_KEY" // works hardcoded
 });
 
 // Requires Express to run server and routes
@@ -37,6 +39,7 @@ console.log(__dirname);
 
 // Setting up the GET route (Client takes data from Server)
 app.get("/", function (req, res) {
+  console.log("Yo Bitch");
   res.sendFile("dist/index.html");
 });
 
@@ -52,24 +55,17 @@ app.get("/test", function (req, res) {
 // Setting up the POST Route (Client sending data to Server)
 app.post("/sendText", function (req, res) {
   // https://docs.aylien.com/textapi/sdks/#node-js-sdk
-  //   textapi.sentiment({
-  //     'text': 'John is a very good football player!'
-  //   }, function (error, response) {
-  //     if (error === null) {
-  //       console.log(response);
-  //     } else {
-  //       console.log("Hello! Sentiment")
-  //     }
-  //   });
-  // }
-
-  textapi.sentiment({ url: req.body.url }, function (error, response) {
-    if (error) {
-      console.log("Error: Aylien request not successful");
-      console.log()
-      response.send();
-      return;
-    }
-    console.log("Success: You got the Aylien results");
-  })
+    textapi.sentiment({
+      'url': req.body.url
+    }, function (error, response) {
+      if (error === null) {
+        console.log("Success: You got the Aylien results");
+        res.send();
+        console.log(res);
+      } else {
+        console.log("Error: Aylien request not successful");
+        console.log(error);
+        return;
+      }
+    });
 });

@@ -13,14 +13,14 @@ function handleSubmit(event) {
         return;
     }
     console.log("URL valid: please wait for the response")
-    fetch("//localhost:3000/sendText", {
+    fetch("http://localhost:8080/sendText", {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({ url }), // body data type must match "Content-Type" header
     })
-        .then(response => response.json())
+        .then(res => res.json())
         .then(function (response) {
             // Adding results into HTML
             document.getElementById("results").innerHTML = response.text;
