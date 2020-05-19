@@ -17,13 +17,15 @@ function handleSubmit(event) {
     //         })
     // }
 
+    // Check the URL which was put into the formfield
     let url = document.getElementById("url").value;
+    // If statement to check if the URL is not valid or valid
     if (!urlCheck(url)) {
         console.log("Your URL is not valid");
         return;
     }
     console.log("URL valid: please wait for the response")
-    fetch("//localhost:8081/sendText", {
+    fetch("//localhost:8080/sendText", {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         headers: {
             "Content-Type": "application/json",
@@ -33,6 +35,8 @@ function handleSubmit(event) {
         .then(respond => respond.json())
         .then(function (respond) {
             document.getElementById("results").innerHTML = respond.text;
+            document.getElementById("polarity").innerHTML = respond.polarity;
+            document.getElementById("your-text").innerHTML = respond.text
         })
 }
 

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Test</title>
+    <title>Evaluate News Article</title>
 </head>
 
 <body>
@@ -19,22 +19,32 @@
 
     <main>
         <section>
-            <form class="" onsubmit="return handleSubmit(event)">
-                <input id="url" type="text" name="url" value="" onblur="onBlur()" placeholder="Name">
+            <form class="" onsubmit="return Client.handleSubmit(event)">
+                <input id="url" type="text" name="url" value="" placeholder="Paste your URL here">
                 <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)"
-                    onsubmit="return handleSubmit(event)">
+                    onsubmit="return Client.handleSubmit(event)">
             </form>
             <section>
 
                 <section>
                     <strong>Form Results:</strong>
                     <div id="results"></div>
+                    <strong>Polarity (DE: Polarität)</strong>
+                    <div id="polarity"></div>
+                    <strong>Confidence (DE: Konfidenz)</strong>
+                    <div id="confidence"></div>
+                    <strong>Your Text</strong>
+                    <div id="your-text"></div>
                 </section>
     </main>
 
     <footer>
         <p>This is a footer</p>
     </footer>
+
+    <script>
+        // Service Worker (Implement later)
+    </script>
 
 </body>
 

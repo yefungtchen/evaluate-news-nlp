@@ -51,13 +51,24 @@ app.get("/test", function (req, res) {
 
 // Setting up the POST Route (Client sending data to Server)
 app.post("/sendText", function (req, res) {
-  textapi.sentiment({ url: req.body.url }, function (error, results) {
+  // https://docs.aylien.com/textapi/sdks/#node-js-sdk
+  //   textapi.sentiment({
+  //     'text': 'John is a very good football player!'
+  //   }, function (error, response) {
+  //     if (error === null) {
+  //       console.log(response);
+  //     } else {
+  //       console.log("Hello! Sentiment")
+  //     }
+  //   });
+  // }
+
+  textapi.sentiment({ url: req.body.url }, function (error, response) {
     if (error) {
       console.log("Error: Aylien request not successful");
       res.send();
       return;
     }
     console.log("Success: You got the Aylien results");
-    res.send(results)
   })
 });
