@@ -22,6 +22,18 @@ function handleSubmit(event) {
         console.log("Your URL is not valid");
         return;
     }
+    console.log("URL valid: please wait for the response")
+    fetch("//localhost:8081/sendText", {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ url }), // body data type must match "Content-Type" header
+    })
+        .then(respond => respond.json())
+        .then(function (respond) {
+            document.getElementById("results").innerHTML = respond.text;
+        })
 }
 
 

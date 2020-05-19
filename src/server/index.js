@@ -51,5 +51,13 @@ app.get("/test", function (req, res) {
 
 // Setting up the POST Route (Client sending data to Server)
 app.post("/sendText", function (req, res) {
-
+  textapi.sentiment({ url: req.body.url }, function (error, results) {
+    if (error) {
+      console.log("Error: Aylien request not successful");
+      res.send();
+      return;
+    }
+    console.log("Success: You got the Aylien results");
+    res.send(results)
+  })
 });
