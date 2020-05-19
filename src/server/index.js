@@ -10,8 +10,8 @@ const mockAPIResponse = require("./mockAPI.js");
 // Aylien API
 const AYLIENTextAPI = require('aylien_textapi');
 const textapi = new AYLIENTextAPI({
-  application_id: "", // works hardcoded
-  application_key: "" // works hardcoded
+  application_id: "", // works hardcoded.
+  application_key: "" // works hardcoded.
 });
 
 // Requires Express to run server and routes
