@@ -10,8 +10,8 @@ const mockAPIResponse = require("./mockAPI.js");
 // Aylien API
 const AYLIENTextAPI = require('aylien_textapi');
 const textapi = new AYLIENTextAPI({
-  application_id: "", // works hardcoded.
-  application_key: "" // works hardcoded.
+  application_id: "fbbd114c", // works hardcoded.
+  application_key: "9d9fa28fb636068c1d488ca2c2ebf874" // works hardcoded.
 });
 
 // Requires Express to run server and routes
@@ -39,7 +39,7 @@ console.log(__dirname);
 
 // Setting up the GET route (Client takes data from Server)
 app.get("/", function (req, res) {
-  console.log("Yo Bitch");
+  // res.sendFile(path.join(__dirname, '/dist', 'index.html'));
   res.sendFile("dist/index.html");
 });
 
@@ -55,17 +55,17 @@ app.get("/test", function (req, res) {
 // Setting up the POST Route (Client sending data to Server)
 app.post("/sendText", function (req, res) {
   // https://docs.aylien.com/textapi/sdks/#node-js-sdk
-    textapi.sentiment({
-      'url': req.body.url
-    }, function (error, response) {
-      if (error === null) {
-        console.log("Success: You got the Aylien results");
-        res.send();
-        console.log(res);
-      } else {
-        console.log("Error: Aylien request not successful");
-        console.log(error);
-        return;
-      }
-    });
+  textapi.sentiment({
+    'url': req.body.url
+  }, function (error, textResults) {
+    if (error === null) {
+      console.log("Success: You got the Aylien results");
+      res.send(textResults);
+      console.log(textResults);
+    } else {
+      console.log("Error: Aylien request not successful");
+      console.log(error);
+      return;
+    }
+  });
 });

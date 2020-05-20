@@ -22,6 +22,8 @@ function handleSubmit(event) {
     })
         .then(res => res.json())
         .then(function (response) {
+            console.log("Aylien response should be listed here!!!")
+            console.log(response);
             // Adding results into HTML
             document.getElementById("results").innerHTML = response.text;
             document.getElementById("polarity").innerHTML = response.polarity;
