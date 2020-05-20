@@ -1,19 +1,15 @@
-// const dotenv = require('dotenv');
-// dotenv.config();
-// console.log("API Keys")
-// console.log(`Your API id is ${process.env.API_ID}`);
-// console.log(`Your API key is ${process.env.API_KEY}`);
+var dotenv = require('dotenv');
+dotenv.config();
 var path = require("path");
 
 const mockAPIResponse = require("./mockAPI.js");
 
 // Aylien API
-const AYLIENTextAPI = require('aylien_textapi');
-const textapi = new AYLIENTextAPI({
-  application_id: "fbbd114c", // works hardcoded.
-  application_key: "9d9fa28fb636068c1d488ca2c2ebf874" // works hardcoded.
-});
-
+var aylienApi = require("aylien_textapi")
+var textapi = new aylienApi({
+  application_id: process.env.API_ID,
+  application_key: process.env.API_KEY
+})
 // Requires Express to run server and routes
 const express = require("express");
 const app = express();

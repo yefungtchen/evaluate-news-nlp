@@ -14,8 +14,3 @@ export {
     urlCheck,
     handleSubmit
 };
-
-// console.log(urlCheck);
-
-// alert("I EXIST");
-// console.log("CHANGE!!");
